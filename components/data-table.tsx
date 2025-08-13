@@ -25,6 +25,7 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useConfirm } from "@/hooks/use-confirm";
 import { Trash } from "lucide-react";
 
 interface DataTableProps<TData, TValue> {
@@ -42,6 +43,7 @@ export function DataTable<TData, TValue>({
   onDelete,
   disabled,
 }: DataTableProps<TData, TValue>) {
+  const [ConfirmDialog, confirm] = useConfirm();
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -65,8 +67,14 @@ export function DataTable<TData, TValue>({
     },
   });
 
+  const selectedRowsCount = table.getFilteredSelectedRowModel().rows.length;
+
   return (
     <div>
+      <ConfirmDialog
+        title="Are you sure?"
+        message={`You are about to delete ${selectedRowsCount} accounts.`}
+      />
       <div className="flex items-center py-4 gap-x-3">
         <Input
           placeholder={`Filter ${filterKey}...`}
@@ -82,6 +90,14 @@ export function DataTable<TData, TValue>({
             size="sm"
             variant="destructive"
             className="ml-auto font-normal text-xs"
+            onClick={async () => {
+              const ok = await confirm();
+
+              if (ok) {
+                onDelete(table.getFilteredSelectedRowModel().rows);
+                table.resetRowSelection();
+              }
+            }}
           >
             <Trash className="size-4 mr-2" />
             Delete ({table.getFilteredSelectedRowModel().rows.length})
@@ -140,8 +156,8 @@ export function DataTable<TData, TValue>({
       </div>
       <div className="flex items-center">
         <div className=" text-muted-foreground flex-1 text-sm">
-          {table.getFilteredSelectedRowModel().rows.length} of{" "}
-          {table.getFilteredRowModel().rows.length} row(s) selected.
+          {selectedRowsCount} of {table.getFilteredRowModel().rows.length}{" "}
+          row(s) selected.
         </div>
         <div className="flex items-center justify-end space-x-2 py-4">
           <Button
