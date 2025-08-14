@@ -22,7 +22,6 @@ export const Header = () => {
         </div>
         <WelcomeMsg />
       </div>
-      Header
     </header>
   );
 };

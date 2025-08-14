@@ -7,6 +7,7 @@ import { ArrowUpDown } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
+import Actions from "@/app/(dashboard)/dashboard/accounts/actions";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -16,6 +17,7 @@ export type ResponseType = InferResponseType<
 >["data"][0];
 
 export const columns: ColumnDef<ResponseType>[] = [
+  //checkbox
   {
     id: "select",
     header: ({ table }) => (
@@ -36,6 +38,7 @@ export const columns: ColumnDef<ResponseType>[] = [
       />
     ),
   },
+  //name
   {
     accessorKey: "name",
     header: ({ column }) => {
@@ -49,5 +52,10 @@ export const columns: ColumnDef<ResponseType>[] = [
         </Button>
       );
     },
+  },
+  //actions
+  {
+    id: "actions",
+    cell: ({ row }) => <Actions id={row.original.id} />,
   },
 ];
