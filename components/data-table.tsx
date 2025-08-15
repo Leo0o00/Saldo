@@ -69,11 +69,20 @@ export function DataTable<TData, TValue>({
 
   const selectedRowsCount = table.getFilteredSelectedRowModel().rows.length;
 
+  const handleDelete = async () => {
+    const ok = await confirm();
+
+    if (ok) {
+      onDelete(table.getFilteredSelectedRowModel().rows);
+      table.resetRowSelection();
+    }
+  };
+
   return (
     <div>
       <ConfirmDialog
         title="Are you sure?"
-        message={`You are about to delete ${selectedRowsCount} accounts.`}
+        message={`You are about to delete ${selectedRowsCount} elements.`}
       />
       <div className="flex items-center py-4 gap-x-3">
         <Input
@@ -90,14 +99,7 @@ export function DataTable<TData, TValue>({
             size="sm"
             variant="destructive"
             className="ml-auto font-normal text-xs"
-            onClick={async () => {
-              const ok = await confirm();
-
-              if (ok) {
-                onDelete(table.getFilteredSelectedRowModel().rows);
-                table.resetRowSelection();
-              }
-            }}
+            onClick={handleDelete}
           >
             <Trash className="size-4 mr-2" />
             Delete ({table.getFilteredSelectedRowModel().rows.length})
