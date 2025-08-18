@@ -27,7 +27,7 @@ export const useBulkDeleteCategories = () => {
       // TODO: Also invalidate summary
     },
     onError: () => {
-      toast.error("Failed to create category");
+      toast.error("Failed to delete categories");
     },
   });
 

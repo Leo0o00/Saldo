@@ -27,7 +27,7 @@ export const useBulkDeleteAccounts = () => {
       // TODO: Also invalidate summary
     },
     onError: () => {
-      toast.error("Failed to create account");
+      toast.error("Failed to delete account");
     },
   });
 
