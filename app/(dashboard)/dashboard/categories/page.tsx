@@ -11,6 +11,7 @@ import { DataTable } from "@/components/data-table";
 
 import { Loader2, Plus } from "lucide-react";
 import { columns } from "./columns";
+import { Suspense } from "react";
 
 const CategoriesPage = () => {
   const newCategory = useNewCategory();
@@ -66,4 +67,25 @@ const CategoriesPage = () => {
   );
 };
 
-export default CategoriesPage;
+export default function CategoriesPageWrapper() {
+  return (
+    <Suspense
+      fallback={
+        <div className="max-w-screen-2xl mx-auto w-full pb-10 -mt-24">
+          <Card className="border-none drop-shadow-sm">
+            <CardHeader>
+              <Skeleton className="h-8 w-48" />
+            </CardHeader>
+            <CardContent>
+              <div className="h-[500px] w-full flex items-center justify-center">
+                <Loader2 className="size-6 text-slate-300 animate-spin" />
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      }
+    >
+      <CategoriesPage />
+    </Suspense>
+  );
+}

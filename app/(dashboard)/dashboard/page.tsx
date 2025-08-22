@@ -2,6 +2,7 @@
 
 import { DataCharts } from "@/components/data-chart";
 import DataGrid from "@/components/data-grid";
+import { Suspense } from "react";
 
 function DashboardPage() {
   return (
@@ -12,4 +13,10 @@ function DashboardPage() {
   );
 }
 
-export default DashboardPage;
+export default function DashboardPageWrapper() {
+  return (
+    <Suspense>
+      <DashboardPage />
+    </Suspense>
+  );
+}

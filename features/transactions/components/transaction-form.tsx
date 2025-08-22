@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Select } from "@/components/select";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { DatePicker } from "@/components/data-picker";
+import { DatePicker } from "@/components/date-picker";
 import {
   Form,
   FormControl,
@@ -92,7 +92,7 @@ export const TransactionForm = ({
             <FormItem>
               <FormControl>
                 <DatePicker
-                  value={field.value}
+                  value={(field.value as Date) || undefined}
                   onChange={field.onChange}
                   disabled={disabled}
                 />
@@ -184,7 +184,7 @@ export const TransactionForm = ({
               <FormControl>
                 <Textarea
                   {...field}
-                  value={field.value}
+                  value={field.value || ""}
                   disabled={disabled}
                   placeholder="Optional notes"
                 />
