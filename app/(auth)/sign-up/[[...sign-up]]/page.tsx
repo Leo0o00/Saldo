@@ -24,8 +24,12 @@ export default function Page() {
       </div>
       {/* 2nd Col */}
       <div className="h-full bg-blue-600 hidden lg:flex items-center justify-center">
-        {/* TODO: Replace this logo with a custom one */}
-        <Image src="/next.svg" width={100} height={100} alt="Company Logo" />
+        <Image
+          src="/saldo-logo.svg"
+          width={100}
+          height={100}
+          alt="Company Logo"
+        />
       </div>
     </div>
   );

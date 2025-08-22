@@ -6,7 +6,12 @@ const HeaderLogo = () => {
     <Link href="/">
       <div className="items-center hidden lg:flex">
         {/* TODO: Replace this logo with a custom one */}
-        <Image src="/next.svg" width={28} height={28} alt="Company Logo" />
+        <Image
+          src="/saldo-logo.svg"
+          width={28}
+          height={28}
+          alt="Company Logo"
+        />
         <p className="font-semibold text-white text-2xl ml-2.5">
           {companyName}
         </p>
