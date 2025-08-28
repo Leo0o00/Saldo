@@ -32,7 +32,7 @@ export const PieVariant = ({ data }: Props) => {
           align="right"
           iconType="circle"
           content={({ payload }: any) => {
-            console.log("PAYLOAD: ", payload);
+            // console.log("PAYLOAD: ", payload);
             return (
               <ul className="flex flex-col space-y-2">
                 {payload.map((entry: any, index: number) => (
@@ -58,7 +58,7 @@ export const PieVariant = ({ data }: Props) => {
             );
           }}
         />
-        <Tooltip content={<CategoryToolTip />} />
+        <Tooltip content={CategoryToolTip} />
         <Pie
           data={data}
           cx="50%"

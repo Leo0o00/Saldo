@@ -48,7 +48,7 @@ export const RadialVariant = ({ data }: Props) => {
           align="right"
           iconType="circle"
           content={({ payload }: any) => {
-            console.log("PAYLOAD: ", payload);
+            // console.log("PAYLOAD: ", payload);
             return (
               <ul className="flex flex-col space-y-2">
                 {payload.map((entry: any, index: number) => (
