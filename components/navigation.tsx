@@ -26,10 +26,10 @@ const routes = [
     href: "/dashboard/categories",
     label: "Categories",
   },
-  {
-    href: "/dashboard/settings",
-    label: "Settings",
-  },
+  // {
+  //   href: "/dashboard/settings",
+  //   label: "Settings",
+  // },
 ];
 
 const Navigation = () => {
